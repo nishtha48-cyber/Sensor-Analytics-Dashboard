@@ -1,0 +1,9 @@
+smart_home_iot_dataset.csv
+smart_home_iot_dataset_cleaned.csv
+
+
+__pycache__/
+*.pyc
+
+tempCodeRunnerFile.cpp
+tempCodeRunnerFile.python

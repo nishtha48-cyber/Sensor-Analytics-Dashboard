@@ -1,0 +1,140 @@
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100vw;
+    padding: 4vh;
+    color: aliceblue;
+    font-family: sans-serif;
+    font-weight:300;
+    background-color: #150D3A;
+
+}
+
+.dropdown{
+    width: 25vw;
+    margin: 0 10vw;
+    color:black;
+    height: auto;
+}
+
+.date{
+    width:25vw;
+}
+
+.selectors:hover {
+    border-color: rgb(240, 11, 221);
+    
+}
+
+body{
+    color:rgb(2, 2, 2);
+}
+
+.selection{
+    display: inline-block;
+    margin:2vh 10vw 1vh 10.5vw;
+    padding:8px;
+    font-size: larger;
+    background-color: #8A12FF;
+    border-radius: 20px;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: medium;
+    color:aliceblue
+
+}
+
+.range{
+    display: inline-block;
+    margin:2vh 10vw 1vh 4.5vw;
+    padding:10px;
+    font-size: larger;
+    background-color: #8A12FF;
+    border-radius: 20px;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: medium;
+    color:aliceblue
+
+}
+
+.selectors{
+    display:flex;
+    gap: 28vw;
+}
+
+.tools{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15vw;
+    margin:10px
+}
+
+.tools:hover{
+    border-color: #8A12FF;
+
+}
+
+.line{
+     border:1px solid #ccc;
+     margin:50px 8vw;
+
+}
+
+.graphc-1{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin:30px 8vw;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:all 0.3s ease;
+}
+
+.graphc-1:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.kpi-cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin: 2rem 8vw;
+    
+}
+
+.kpi-card{
+    flex:1;
+    min-width:7rem;
+    padding:0.5rem;
+    border-radius:0.75rem;
+    background-color: #8A12FF;
+    color:aliceblue;
+    text-align: center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+.dashboard-row{
+    display:flex;
+    gap:25px;
+    margin-top:20px;
+    align-items:flex-start;
+}
+
+.graph-container{
+    flex:3;
+}
+
+.summary-container{
+    flex:1;
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    min-height:75vh;
+}
+
+
+
