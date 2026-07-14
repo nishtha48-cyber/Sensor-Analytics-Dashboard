@@ -71,7 +71,7 @@ print("missing values: ",missing[missing > 0])
 app=Dash(__name__) 
 
 app.layout= html.Div([ 
-html.H1("Home IOT Sensor Analytics",className='heading'), 
+html.H1("Smart Home IOT Analytics Dashboard",className='heading'), 
 html.Div([ 
 html.P('Select Category', className='selection'),
  html.P('Select Date range', className='range'), 
@@ -204,31 +204,32 @@ def update_graphs(selected,start_date, end_date):
             insight = "Several sensor measurements exhibit strong relationships."
         
         summary = html.Div([
-            html.H3("Correlation Summary"),
 
-            html.P([
-                html.B("Highest Positive Correlation: "),
-                f"{column_names[positive_pair[0]]} ↔ {column_names[positive_pair[1]]} "
-                f"({positive_value:.2f})"
-            ]),
+            html.H3("📊 Correlation Summary", className="summary-title"),
 
-            html.P([
-                html.B("Highest Negative Correlation: "),
-                f"{column_names[negative_pair[0]]} ↔ {column_names[negative_pair[1]]} "
-                f"({negative_value:.2f})"
-            ]),
+            html.Div([
+            html.H4("📈 Highest Positive"),
+            html.P(f"{column_names[positive_pair[0]]} ↔ {column_names[positive_pair[1]]}"),
+            html.H3(f"{positive_value:.2f}")
+        ], className="summary-card positive"),
 
-            html.P([
-                html.B("Average Correlation Strength: "),
-                f"{avg_corr:.2f}"
-            ]),
+        html.Div([
+        html.H4("📉 Highest Negative"),
+        html.P(f"{column_names[negative_pair[0]]} ↔ {column_names[negative_pair[1]]}"),
+        html.H3(f"{negative_value:.2f}")
+        ], className="summary-card negative"),
 
-            html.P([
-                html.B("Observation: "),
-                insight
-            ])
+        html.Div([
+        html.H4("⭐ Average Correlation"),
+        html.H3(f"{avg_corr:.2f}")
+        ], className="summary-card average"),
 
-        ])
+        html.Div([
+        html.H4("💡 Key Insight"),
+        html.P(insight)
+        ], className="summary-card insight")
+
+        ], className="summary-container")
 
         return fig, summary
 
@@ -373,39 +374,40 @@ def update_graphs(selected,start_date, end_date):
 
         summary = html.Div([
 
-            html.H3("Temperature Summary"),
+        html.H3("🌡️ Temperature Summary", className="summary-title"),
 
-            html.P([
-                html.B("Average Temperature: "),
-                f"{avg_temp:.1f} °C"
-            ]),
+        html.Div([
+        html.H4("🌡️ Average Temperature"),
+        html.H3(f"{avg_temp:.1f} °C")
+        ], className="summary-card average"),
 
-            html.P([
-                html.B("Highest Average Temperature: "),
-                f"{max_temp:.1f} °C"
-            ]),
+        html.Div([
+        html.H4("🔥 Highest Average"),
+        html.H3(f"{max_temp:.1f} °C")
+        ], className="summary-card negative"),
 
-            html.P([
-                html.B("Lowest Average Temperature: "),
-                f"{min_temp:.1f} °C"
-            ]),
+        html.Div([
+        html.H4("❄️ Lowest Average"),
+        html.H3(f"{min_temp:.1f} °C")
+        ], className="summary-card positive"),
 
-            html.P([
-            html.B("Warmest Day: "),
-            f"{hottest_day} ({highest_temp:.1f} °C)"
-        ]),
+        html.Div([
+        html.H4("☀️ Warmest Day"),
+        html.P(hottest_day),
+        html.H3(f"{highest_temp:.1f} °C")
+        ], className="summary-card peak"),
 
-            html.P([
-                html.B("Temperature Range: "),
-                f"{temp_range:.1f} °C"
-            ]),
+        html.Div([
+        html.H4("📏 Temperature Range"),
+        html.H3(f"{temp_range:.1f} °C")
+        ], className="summary-card average"),
 
-            html.P([
-                html.B("Observation: "),
-                observation
-            ])
+        html.Div([
+        html.H4("💡 Key Insight"),
+        html.P(observation)
+        ], className="summary-card insight")
 
-        ])
+    ], className="summary-container")
 
         return fig,summary
     
@@ -457,39 +459,39 @@ def update_graphs(selected,start_date, end_date):
 
         summary = html.Div([
 
-            html.H3("Network Latency Summary"),
+            html.H3("🌐 Network Latency Summary", className="summary-title"),
 
-            html.P([
-                html.B("Average Latency: "),
-                f"{avg_latency:.2f} ms"
-            ]),
+        html.Div([
+        html.H4("📊 Average Latency"),
+        html.H3(f"{avg_latency:.2f} ms")
+        ], className="summary-card average"),
 
-            html.P([
-                html.B("Highest Latency: "),
-                f"{max_latency:.2f} ms"
-            ]),
+        html.Div([
+        html.H4("🔴 Highest Latency"),
+        html.H3(f"{max_latency:.2f} ms")
+        ], className="summary-card negative"),
 
-            html.P([
-                html.B("Lowest Latency: "),
-                f"{min_latency:.2f} ms"
-            ]),
+        html.Div([
+        html.H4("🟢 Lowest Latency"),
+        html.H3(f"{min_latency:.2f} ms")
+        ], className="summary-card positive"),
 
-            html.P([
-                html.B("Highest Average Latency Day: "),
-                str(highest_latency_day)
-            ]),
+        html.Div([
+        html.H4("📅 Highest Latency Day"),
+        html.P(str(highest_latency_day))
+        ], className="summary-card peak"),
 
-            html.P([
-                html.B("Latency Range: "),
-                f"{latency_range:.2f} ms"
-            ]),
+        html.Div([
+        html.H4("📏 Latency Range"),
+        html.H3(f"{latency_range:.2f} ms")
+        ], className="summary-card average"),
 
-            html.P([
-                html.B("Observation: "),
-                observation
-            ])
+        html.Div([
+        html.H4("💡 Key Insight"),
+        html.P(observation)
+        ], className="summary-card insight")
 
-        ])
+    ], className="summary-container")
 
         return fig,summary 
     
@@ -548,34 +550,37 @@ def update_graphs(selected,start_date, end_date):
         )
 
         summary = html.Div([
-            html.H3("Energy Consumption Summary"),
-            html.P([
-            html.B("Average Energy Consumption: "),
-            f"{avg_energy:.2f} kWh/day"
-        ]),
 
-            html.P([
-                html.B("Highest Energy Device: "),
-                f"{device_names.get(highest_device, highest_device)} ({highest_energy:.2f} kWh/day)"
-        ]),
+        html.H3("⚡ Energy Consumption Summary", className="summary-title"),
 
-            html.P([
-                html.B("Lowest Energy Device: "),
-                f"{device_names.get(lowest_device, lowest_device)} ({lowest_energy:.2f} kWh/day)"
-        ]),
+        html.Div([
+        html.H4("⚡ Average Energy"),
+        html.H3(f"{avg_energy:.2f} kWh/day")
+        ], className="summary-card average"),
 
-            html.P([
-                html.B("Difference: "),
-                f"{energy_diff:.2f} kWh/day"
-            ]),
+        html.Div([
+        html.H4("🔋 Highest Consumer"),
+        html.P(device_names.get(highest_device, highest_device)),
+        html.H3(f"{highest_energy:.2f} kWh/day")
+        ], className="summary-card negative"),
 
-            html.P([
-                html.B("Observation: "),
-                observation
-        ])
+        html.Div([
+        html.H4("🌿 Lowest Consumer"),
+        html.P(device_names.get(lowest_device, lowest_device)),
+        html.H3(f"{lowest_energy:.2f} kWh/day")
+        ], className="summary-card positive"),
 
-    ])
+        html.Div([
+        html.H4("📊 Consumption Difference"),
+        html.H3(f"{energy_diff:.2f} kWh/day")
+            ], className="summary-card peak"),
 
+        html.Div([
+        html.H4("💡 Key Insight"),
+        html.P(observation)
+        ], className="summary-card insight")
+
+    ], className="summary-container")
         return fig,summary
 
     elif selected == "latency_heatmap":
@@ -630,28 +635,31 @@ def update_graphs(selected,start_date, end_date):
 
         summary = html.Div([
 
-            html.H3("Latency Heatmap Summary"),
+        html.H3("🌐 Latency Heatmap Summary", className="summary-title"),
 
-            html.P([
-            html.B("Overall Average Latency: "),
-            f"{avg_latency:.2f} ms"
-            ]),
+        html.Div([
+        html.H4("📊 Average Latency"),
+        html.H3(f"{avg_latency:.2f} ms")
+        ], className="summary-card average"),
 
-            html.P([
-            html.B("Fastest Connection: "),
-            f"{fastest_protocol} + {fastest_manufacturer} ({fastest_latency:.2f} ms)"
-            ]),
+        html.Div([
+        html.H4("🚀 Fastest Connection"),
+        html.P(f"{fastest_protocol} + {fastest_manufacturer}"),
+        html.H3(f"{fastest_latency:.2f} ms")
+        ], className="summary-card positive"),
 
-            html.P([
-            html.B("Slowest Connection: "),
-            f"{slowest_protocol} + {slowest_manufacturer} ({slowest_latency:.2f} ms)"
-            ]),
+        html.Div([
+        html.H4("🐢 Slowest Connection"),
+        html.P(f"{slowest_protocol} + {slowest_manufacturer}"),
+        html.H3(f"{slowest_latency:.2f} ms")
+        ], className="summary-card negative"),
 
-            html.P([
-            html.B("Observation: "),observation
-            ])
+        html.Div([
+        html.H4("💡 Key Insight"),
+        html.P(observation)
+        ], className="summary-card insight")
 
-        ])
+        ], className="summary-container")
 
         return fig, summary
 
@@ -719,33 +727,36 @@ def update_graphs(selected,start_date, end_date):
 
         summary = html.Div([
 
-            html.H3("Failure Prediction Summary"),
+        html.H3("⚠️ Failure Prediction Summary", className="summary-title"),
 
-            html.P([
-                html.B("Total Predicted Failures: "),
-                str(total_failures)
-            ]),
+        html.Div([
+        html.H4("📊 Total Predicted Failures"),
+        html.H3(str(total_failures))
+        ], className="summary-card average"),
 
-            html.P([
-                html.B("Affected Device Types: "),
-                str(affected_devices)
-            ]),
+        html.Div([
+        html.H4("🖥️ Affected Device Types"),
+        html.H3(str(affected_devices))
+        ], className="summary-card peak"),
 
-            html.P([
-                html.B("Most Predicted Failures: "),
-                f"{highest_device} ({highest_count})"
-            ]),
+        html.Div([
+        html.H4("🔴 Most Predicted Failures"),
+        html.P(highest_device),
+        html.H3(f"{highest_count} Devices")
+        ], className="summary-card negative"),
 
-            html.P([
-                html.B("Least Predicted Failures: "),
-                f"{lowest_device} ({lowest_count})"
-            ]),
+        html.Div([
+        html.H4("🟢 Least Predicted Failures"),
+        html.P(lowest_device),
+        html.H3(f"{lowest_count} Devices")
+        ], className="summary-card positive"),
 
-            html.P([
-                html.B("Observation: "),observation
-            ])
+        html.Div([
+        html.H4("💡 Key Insight"),
+        html.P(observation)
+        ], className="summary-card insight")
 
-        ])
+    ], className="summary-container")
 
         fig.update_traces(textposition="outside")
 
@@ -769,4 +780,4 @@ def update_graphs(selected,start_date, end_date):
     return fig,summary
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5003)
+    app.run(host="0.0.0.0", port=5003, debug=False)

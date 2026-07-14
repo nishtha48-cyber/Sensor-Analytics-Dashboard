@@ -31,37 +31,36 @@ body{
     color:rgb(2, 2, 2);
 }
 
-.selection{
-    display: inline-block;
-    margin:2vh 10vw 1vh 10.5vw;
-    padding:8px;
-    font-size: larger;
-    background-color: #8A12FF;
-    border-radius: 20px;
-    font-family: sans-serif;
-    font-weight: 100;
-    font-size: medium;
-    color:aliceblue
+.selectors{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 25px;
+}
 
+.selection{
+    width:180px;
+    text-align:center;
+    padding:10px 0;
+    background:#8A12FF;
+    border-radius:25px;
+    color:white;
+    font-size:16px;
+    font-weight:500;
+
+    margin-left:10vw;  
 }
 
 .range{
-    display: inline-block;
-    margin:2vh 10vw 1vh 4.5vw;
-    padding:10px;
-    font-size: larger;
-    background-color: #8A12FF;
-    border-radius: 20px;
-    font-family: sans-serif;
-    font-weight: 100;
-    font-size: medium;
-    color:aliceblue
+    width:180px;
+    text-align:center;
+    padding:10px 0;
+    background:#8A12FF;
+    border-radius:25px;
+    color:white;
+    font-size:16px;
+    font-weight:500;
 
-}
-
-.selectors{
-    display:flex;
-    gap: 28vw;
+    margin-left:38vw;   
 }
 
 .tools{
@@ -137,4 +136,64 @@ body{
 }
 
 
+/* Readings */
+.summary-container{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.1);
+    width:100%;
+}
 
+.summary-title{
+    text-align:center;
+    color:#24134d;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.summary-card{
+    padding:10px 14px;
+    margin-bottom:12px;
+    border-radius:10px;
+}
+
+.summary-card h4{
+    margin:0;
+    font-size:16px;
+}
+
+.summary-card h3{
+    margin-top:5px;
+    margin-bottom:0;
+    font-size:18px;
+}
+
+.summary-card p{
+    margin:5px 0 0 0;
+    font-size:14px;
+    line-height:1.4;
+}
+
+.positive{
+    background:#e8f8ec;
+    border-left:5px solid #2ecc71;
+}
+
+/* Negative */
+.negative{
+    background:#fdecec;
+    border-left:5px solid #e74c3c;
+}
+
+/* Average */
+.average{
+    background:#f6f0ff;
+    border-left:5px solid #8e44ad;
+}
+
+/* Insight */
+.insight{
+    background:#eef7ff;
+    border-left:5px solid #3498db;
+}
