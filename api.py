@@ -5,8 +5,8 @@ from dtos import SensorDTO, SecurityEvent, DeleteSensor
 
 app=FastAPI()
 
-engine=create_engine(
-    "mysql+pymysql://root:Nishtha123@localhost/SENSORS"
+engine = create_engine(
+    "mysql+pymysql://dashboard:Nishtha123@localhost/SENSORS"
 )
 
 @app.get("/sensors")
