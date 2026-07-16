@@ -10,6 +10,8 @@ engine = create_engine(
     "mysql+pymysql://dashboard:Nishtha123@localhost/SENSORS"
 )
 
+
+
 print("Table uploaded successfully!")
 
 query = """
@@ -18,6 +20,7 @@ FROM smart_home_iot_dataset_cleaned;
 """
 
 df = pd.read_sql(query, engine)
+print(df.memory_usage(deep=True).sum() / (1024**2), "MB")
 
 column_names = {
     "temperature_c": "Temperature (°C)",

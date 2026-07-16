@@ -13,7 +13,7 @@ engine = create_engine(
 def get_sensors():
     query="""
     SELECT *
-    FROM smart_home_iot_dataset
+    FROM smart_home_iot_dataset_cleaned
     LIMIT 50;
 
     """
@@ -27,7 +27,7 @@ def get_maintenance(limit: int=100,offset:int=0):
     print("API called")
     query= f"""SELECT DISTINCT device_id,
     room,
-    device_type,maintenance_due_flag FROM smart_home_iot_dataset
+    device_type,maintenance_due_flag FROM smart_home_iot_dataset_cleaned
     WHERE maintenance_due_flag=1 LIMIT {limit} OFFSET {offset}"""
 
     print("Running SQL...")
@@ -49,7 +49,7 @@ def get_devices():
     device_type,
     manufacturer,
     model
-    FROM smart_home_iot_dataset;  """
+    FROM smart_home_iot_dataset_cleaned;  """
 
     df=pd.read_sql(query,engine)
 
@@ -61,7 +61,7 @@ def get_devices():
 def get_stats():
     query=""" SELECT 
     room, AVG(temperature_c), AVG(humidity_pct), AVG(power_consumption_w)
-    FROM smart_home_iot_dataset
+    FROM smart_home_iot_dataset_cleaned
     GROUP BY room; """
  
     df=pd.read_sql(query,engine)
@@ -74,7 +74,7 @@ def risky():
     SELECT DISTINCT
     device_id, device_type,room,
     failure_within_7days
-    FROM smart_home_iot_dataset
+    FROM smart_home_iot_dataset_cleaned
     WHERE failure_within_7days=1;
     """
 
@@ -86,7 +86,7 @@ def risky():
 def low_battery():
     query="""
     SELECT device_id,battery_level_pct 
-    from smart_home_iot_dataset
+    from smart_home_iot_dataset_cleaned
     WHERE battery_level_pct<20;
 """
 
@@ -100,7 +100,7 @@ def avg_battery():
     SELECT
     manufacturer,
     AVG(battery_level_pct)
-    FROM smart_home_iot_dataset
+    FROM smart_home_iot_dataset_cleaned
     GROUP BY manufacturer;
 """
 
@@ -111,7 +111,7 @@ def avg_battery():
 @app.post("/new_reading")
 def add_reading(sensor:SensorDTO):
     query=text("""
-        INSERT INTO smart_home_iot_dataset
+        INSERT INTO smart_home_iot_dataset_cleaned
         (
             timestamp,
             device_id,
@@ -181,11 +181,5 @@ def add_security_event(event: SecurityEvent):
     return {"message": "Security event logged successfully"}
 
 
-
-
-
-## delete old sensor data
-# @app.delete("old_data")
-# def delete_oldData(data: )
 
 
