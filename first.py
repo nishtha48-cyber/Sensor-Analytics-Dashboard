@@ -16,7 +16,7 @@ print("Table uploaded successfully!")
 
 query = """
 SELECT *
-FROM smart_home_iot_dataset_cleaned;
+FROM smart_home_iot_dataset_cleaned limit 200000;
 """
 
 df = pd.read_sql(query, engine)
